@@ -1,7 +1,7 @@
 {
   "name": "cli-blogsnest",
   "version": "1.0.0",
-  "description": "",
+  "description": "An interactive command-line interface for reading blogs with ease.",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,7 +9,10 @@
   },
   "keywords": [
     "cli",
-    "blogs"
+    "blogs",
+    "reader",
+    "interactive",
+    "javascript"
   ],
   "author": "idrisGit",
   "license": "MIT"
