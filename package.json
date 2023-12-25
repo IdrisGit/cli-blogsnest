@@ -15,5 +15,10 @@
     "javascript"
   ],
   "author": "idrisGit",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@inquirer/prompts": "^3.3.0",
+    "nanospinner": "^1.1.0",
+    "open": "^10.0.1"
+  }
 }
