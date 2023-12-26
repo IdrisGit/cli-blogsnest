@@ -10,20 +10,20 @@ Blogs Nest is a command-line interface (CLI) application designed to help users 
 - [License](#license)
 - [Contact](#contact)
 
-## Getting Started
-
-#### Prerequisites
-
-- [Node.js](https://nodejs.org/) >=18.0
-- [NPM](https://www.npmjs.com/)
-
-### Demo
+- ### Demo
 
 <p align="center">
 	<br>
 	<img src="./assets/demo.gif" width="500">
 	<br>
 </p>
+
+## Getting Started
+
+#### Prerequisites
+
+- [Node.js](https://nodejs.org/) >=18.0
+- [NPM](https://www.npmjs.com/)
 
 ### Local
 
