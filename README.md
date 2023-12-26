@@ -25,6 +25,14 @@ Blogs Nest is a command-line interface (CLI) application designed to help users 
 - [Node.js](https://nodejs.org/) >=18.0
 - [NPM](https://www.npmjs.com/)
 
+### Try it now
+
+Run
+
+```
+npx cli-blogsnest
+```
+
 ### Local
 
 #### Installation
