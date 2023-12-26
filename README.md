@@ -10,7 +10,7 @@ Blogs Nest is a command-line interface (CLI) application designed to help users 
 - [License](#license)
 - [Contact](#contact)
 
-- ### Demo
+## Demo
 
 <p align="center">
 	<br>
