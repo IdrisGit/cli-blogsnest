@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { select, Separator } from "@inquirer/prompts";
 import open, { apps } from "open";
 import { createSpinner } from "nanospinner";
