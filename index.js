@@ -1,5 +1,6 @@
 import { select, Separator } from "@inquirer/prompts";
 import open, { apps } from "open";
+import { createSpinner } from "nanospinner";
 
 const selectBlogProvider = async () => {
   const selectedBlogProvider = await select({
@@ -22,6 +23,7 @@ const selectBlogProvider = async () => {
 
 const fetchDevtoArticleList = async (page = 1) => {
   try {
+    const spinner = createSpinner("Fetching Dev Community articles").start();
     const response = await fetch(
       `https://dev.to/api/articles?per_page=15&page=${page}`
     );
@@ -36,15 +38,14 @@ const fetchDevtoArticleList = async (page = 1) => {
         description: `\n Description: ${article.description}`,
       };
     });
+    spinner.success({ text: "Dev Community Articles" });
     return reducedArticleList;
   } catch (error) {}
 };
 
-const devtoArticle = async () => {
-  let pageNumber = 1;
+const selectComponent = async (choices, pageNumber) => {
   while (true) {
     try {
-      const articleList = await fetchDevtoArticleList(pageNumber);
       const previous = {
         name: "<Previous",
         value: "-1",
@@ -62,17 +63,18 @@ const devtoArticle = async () => {
         pageSize: 20,
         loop: false,
         choices: [
-          ...articleList,
-          new Separator(),
+          ...choices,
+          new Separator("----- Pagination -----"),
           previous,
           next,
           new Separator("----------------------"),
         ],
       });
+
       if (articleLink === "-1") {
-        pageNumber--;
+        await devtoArticle(pageNumber - 1);
       } else if (articleLink === "+1") {
-        pageNumber++;
+        await devtoArticle(pageNumber + 1);
       } else {
         await open(articleLink, {
           app: { name: [apps.browser, apps.firefox, apps.chrome] },
@@ -82,11 +84,18 @@ const devtoArticle = async () => {
   }
 };
 
+const devtoArticle = async (pageNumber) => {
+  try {
+    const articleList = await fetchDevtoArticleList(pageNumber);
+    await selectComponent(articleList, pageNumber);
+  } catch (error) {}
+};
+
 const main = async () => {
   try {
     const blogProvider = await selectBlogProvider();
     if (blogProvider === "dev.to") {
-      await devtoArticle();
+      await devtoArticle(1);
     }
   } catch (error) {}
 };
