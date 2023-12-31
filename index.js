@@ -23,11 +23,13 @@ const selectBlogProvider = async () => {
   return selectedBlogProvider;
 };
 
+let devCommunitySortby = "";
+
 const fetchDevtoArticleList = async (page = 1) => {
   try {
     const spinner = createSpinner("Fetching Dev Community articles").start();
     const response = await fetch(
-      `https://dev.to/api/articles?per_page=15&page=${page}`
+      `https://dev.to/api/articles?per_page=15&page=${page}&state=${devCommunitySortby}`
     );
     if (!response.ok) {
       throw new Error("Network Error");
@@ -97,6 +99,15 @@ const main = async () => {
   try {
     const blogProvider = await selectBlogProvider();
     if (blogProvider === "dev.to") {
+      devCommunitySortby = await select({
+        message: "Sort By",
+        default: "rising",
+        choices: [
+          { name: "Latest", value: "fresh" },
+          { name: "Hot", value: "rising" },
+          { name: "Defaule", value: "all" },
+        ],
+      });
       await devtoArticle(1);
     }
   } catch (error) {}
